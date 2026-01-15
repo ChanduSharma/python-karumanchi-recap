@@ -11,11 +11,10 @@ A curated collection of coding problems and solutions implemented in Python, bas
 ```
 python-karumanchi-recap/
 ├─ README.md
-├─ solutions/                   # solution modules organized by chapter or topic
-   ├─ chapter_01_arrays/
-   │  ├─ two_sum.py
-   │  └─ test_two_sum.py
-   └─ chapter_02_linked_lists/
+   ├─ Linked List/
+   │  ├─ singly_linked_list.py
+   │  └─ doubly_linked_list.py
+   └─ Arrays/
 ```
 
 ## Requirements
