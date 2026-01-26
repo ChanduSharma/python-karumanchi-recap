@@ -1,4 +1,3 @@
-import time
 from typing import Generic, TypeVar
 
 T = TypeVar("T")
@@ -54,31 +53,29 @@ class SinglyLinkedList(Generic[T]):
         else:
             # want to get to one position before
             # insertion pos or the pos ends
-            current_pos = 1
+            current_pos = 0
             current = self.head
 
-            while current and current.next and current_pos < pos:
+            while current and current.next and current_pos < pos - 1:
                 current_pos += 1
                 current = current.next
 
-            if current:
+            if current and current_pos == pos - 1:
                 remaining = current.next
                 new_node = Node(data)
                 new_node.next = remaining
                 current.next = new_node
             else:
-                self.insert_at_beg(data)
+                print(f"Position {pos} does not exist in. Length: {current_pos}")
 
     def del_at_beg(self):
         print("Deleting the first node...")
-        time.sleep(1)
         if self.head:
             self.head = self.head.next
         print("Deleted")
 
     def del_at_end(self):
         print("Deleting the last node...")
-        time.sleep(1)
         if not self.head:  # No nodes just return
             return
 
@@ -109,7 +106,7 @@ class SinglyLinkedList(Generic[T]):
                 previous = current
                 current = current.next
 
-            if cur_pos == pos:
+            if cur_pos == pos and previous:
                 previous.next = current.next
 
     def display(self) -> None:
@@ -124,7 +121,8 @@ if __name__ == "__main__":
     ex = SinglyLinkedList[int]()
     for i in range(6, 0, -1):
         ex.insert_at_beg(i)
-    ex.insert_at_pos(2.5, 2)
+    ex.display()
+    ex.insert_at_pos(2.5, 6)
     ex.insert_at_end(7)
     ex.insert_at_end(8)
     ex.display()
