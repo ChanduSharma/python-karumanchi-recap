@@ -82,9 +82,25 @@ class DoublyLinkedList(Generic[T]):
                 current.prev.next = new_node
                 current.prev = new_node
             else:
-                print(
-                    f"Position {pos} does not exist as current length is only {cur_pos}"
-                )
+                print(f"Position {pos} does not exist. Length: {cur_pos}")
+
+    # Deletion methods
+    def del_at_beg(self) -> None:
+        if self.head:
+            self.head = self.head.next
+            self.head.prev = None
+
+    def del_at_end(self) -> None:
+        current = self.head
+        while current and current.next:
+            current = current.next
+
+        if current and current.prev:
+            current.prev.next = None
+        else:
+            # if current.prev is None means it's head node
+            # or if current is None means there is no node
+            self.head = None
 
 
 if __name__ == "__main__":
@@ -92,7 +108,12 @@ if __name__ == "__main__":
     for i in range(5, 0, -1):
         d.insert_at_beg(i)
     d.display()
-    d.insert_at_end(6)
+    d.insert_at_end(7)
     d.display()
-    d.insert_at_pos(6, 3)
+    d.insert_at_pos(6, 0)
+    d.insert_at_pos(6, 6)
+    d.display()
+    d.del_at_beg()
+    d.display()
+    d.del_at_end()
     d.display()
