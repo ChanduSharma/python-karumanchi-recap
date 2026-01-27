@@ -45,6 +45,7 @@ class DoublyLinkedList(Generic[T]):
             start = start.next
         print("Display Done.")
 
+    # Insertion methods
     def insert_at_beg(self, value: T) -> None:
         new_node = Node(value)
         if self.head:
@@ -101,6 +102,26 @@ class DoublyLinkedList(Generic[T]):
             # if current.prev is None means it's head node
             # or if current is None means there is no node
             self.head = None
+
+    def del_at_pos(self, pos: int) -> None:
+        if pos == 0:
+            self.del_at_beg()
+        else:
+            current_position = 0
+            current = self.head
+
+            while current and current.next and current_position < pos:
+                current = current.next
+                current_position += 1
+
+            if current and current_position == pos:
+                current.prev.next = current.next
+                if current.next:
+                    current.next.prev = current.prev
+                current.next = None
+                current.prev = None
+            else:
+                print(f"Position {pos} does not exist. Length: {current_position}")
 
 
 if __name__ == "__main__":
